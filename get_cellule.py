@@ -4,24 +4,24 @@ ant1 = (0,0)
 
 def get_cellule(world, tuple):
     choices = {
-        "droite" : (0,1),
-        "bas" :(-1,0),
-        "gauche" :(0,-1),
-        "haut": (1,0)
+        "right" : (0,1),
+        "down" :(-1,0),
+        "left" :(0,-1),
+        "up": (1,0)
         }
     
     res=[]
-    if tuple[0] == 0: # 
-        res.append(choices["haut"])
+    if tuple[0] == 0:
+        res.append(choices["up"])
         pass 
-    elif tuple[0] == len(world[0]) - 1 :
-        res.appen(choices[ "bas"])
+    if tuple[0] == len(world[0]) - 1 :
+        res.appen(choices[ "down"])
         pass 
-    elif tuple[1] == 0 :
-        res.append(choices["gauche"])
+    if tuple[1] == 0 :
+        res.append(choices["left"])
         pass 
-    elif tuple[1] == len(world[0]) - 1:
-        res.append(choices["droite"])
+    if tuple[1] == len(world[0]) - 1:
+        res.append(choices["right"])
         pass 
 
     possibilite = []
@@ -32,10 +32,5 @@ def get_cellule(world, tuple):
             possibilite.append(el)
         
     print("res : ", possibilite)
-
-
-
-
-
 
 get_cellule(espace,ant1 )
