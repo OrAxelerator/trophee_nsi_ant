@@ -9,7 +9,7 @@ ant3 = (11,11)
 
 possi = get_cellule(espace, ant1)
 
-print(possi)
+#print(possi) #test
 def food(possibility, ant):
     for choix in possibility :   
         if read_world(ant, choix) == "f":
@@ -17,4 +17,4 @@ def food(possibility, ant):
             return True 
 
 
-food(possi, ant1)
+#food(possi, ant1) #test
