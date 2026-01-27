@@ -12,9 +12,11 @@ possi = get_cellule(espace, ant1)
 #print(possi) #test
 def food(possibility, ant):
     for choix in possibility :   
+        print(read_world(ant, choix))
         if read_world(ant, choix) == "f":
             print("Food Food Food")
-            return True 
+            return possibility
 
 
-#food(possi, ant1) #test
+#print(food(possi, ant1)) #test$
+#AXEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELLLLLLLLL
