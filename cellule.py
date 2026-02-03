@@ -6,6 +6,12 @@ ant1 = (0,0)
 ant2 = (4,11)
 ant3 = (11,11)
 
+ant = { # exemple
+    "pos" : (0, 0),
+    "angle" : (0,1),
+    "have_food" : False
+}
+
 
 def get_cellule(world, ant):
     choices = {
@@ -16,13 +22,13 @@ def get_cellule(world, ant):
     }
     
     interdiction=[]
-    if ant[0] == 0:
+    if ant["pos"][0] == 0:
         interdiction.append(choices["up"])
-    if ant[0] == len(world[0]) - 1 :
+    if ant["pos"][0] == len(world[0]) - 1 :
         interdiction.append(choices["down"])
-    if ant[1] == 0 :
+    if ant["pos"][1] == 0 :
         interdiction.append(choices["left"])
-    if ant[1] == len(world[0]) - 1:
+    if ant["pos"][1] == len(world[0]) - 1:
         interdiction.append(choices["right"])
 
     possibility = []
@@ -35,4 +41,4 @@ def get_cellule(world, ant):
     return possibility
 
 
-#print(get_cellule(espace, ant1)) #test
+print(get_cellule(espace, ant)) #test
