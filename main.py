@@ -1,10 +1,13 @@
 import random
+from cellule import get_cellule
 from world import espace, LARGEUR, HAUTEUR
 from draw import draw
+import read_world
 
-position_fourmi = [0, 6]
+ant1 = [0, 6]
 
 action = ("avancer", "droite", "gauche")
+
 
 def avancer(p):
     return  [p[0] + 1, p[1]]
@@ -19,23 +22,18 @@ def pos_ok(p):
     return 0<=p[0]<LARGEUR and 0<=p[1]<HAUTEUR
 
 
+def move(choix, ant):
+    espace[ant1[0]][ant1[1]] = 0
+    espace[ant1["pos"][0]][ant1["pos"][1]] += 1
+    ant1[0] += (choix[0])
+    ant1[1] += (choix[1])
+for l in range(20):
+    choix = random.choice(get_cellule(espace, ant1))
+    move(choix, ant1["pos"])
+    espace[ant1["pos"][0]][ant1["pos"][1]] = "F"
+    
 
 
-for loop in range(20):
-    choix = random.choice(action)
-    if choix == "avancer":
-        if pos_ok(avancer(position_fourmi)):
-            espace[position_fourmi[0]][position_fourmi[1]] = '👣'
-            position_fourmi = avancer(position_fourmi)
-    if choix == "droite":
-        if pos_ok(droite(position_fourmi)):
-            espace[position_fourmi[0]][position_fourmi[1]] = '👣'
-            position_fourmi = droite(position_fourmi)
-    if choix == "gauche":
-        if pos_ok(gauche(position_fourmi)):
-            espace[position_fourmi[0]][position_fourmi[1]] = '👣'
-            position_fourmi = gauche(position_fourmi)
-    espace[position_fourmi[0]][position_fourmi[1]] = '🐜'
     draw(espace)
     print("============")
     input("...")
