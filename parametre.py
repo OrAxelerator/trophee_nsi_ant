@@ -13,6 +13,7 @@ ant = { # exemple
 
 
 def init_ant():
+    """creer un array de n fourmis"""
     forumi_array = []
     for i in range(nb_ant):
         forumi_array.append({
@@ -26,7 +27,3 @@ ant_array = init_ant()
 
 
 #print(init_ant())
-
-
-
-

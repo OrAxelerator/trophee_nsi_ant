@@ -3,20 +3,28 @@ from world import espace
 from read_world import read_world
 
 
-ant1 = (0,0) # y, x
-ant2 = (4,11)
-ant3 = (11,11)
-
+ant1 = { # exemple
+    "pos" : (0, 0),
+    "angle" : (0,1),
+    "have_food" : False
+}
 possi = get_cellule(espace, ant1)
 
 #print(possi) #test
-def food(possibility, ant):
-    for choix in possibility :   
+def food(possibility, ant) -> tuple | bool:
+    """
+    Si aucune nouttiure n'est présente, renvoi False
+    Sinon renvoi la position de la nourriture en tupple
+    """
+    for choix in possibility :
         print(read_world(ant, choix))
         if read_world(ant, choix) == "f":
             print("Food Food Food")
-            return possibility
+            ant["have_food"] = True
+            return choix
+        else:
+            return False
 
 
-#print(food(possi, ant1)) #test$
-#AXEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELLLLLLLLL
+
+print(food(possi, ant1)) #test$

@@ -7,12 +7,18 @@ ant1 = { # exemple
     "angle" : (0,1),
     "have_food" : False
 }
-choix = get_cellule(espace, ant1)
-print(read_world(ant1, (0,0)))
-print("choix : ", choix)
-# ant, choix
+#choix = get_cellule(espace, ant1)
+#print(read_world(ant1, (0,0)))
+#print("choix : ", choix)
+#ant, choix
 
-def choose(espace, choix, ant):
+
+def choose( choix : list, ant: dict) -> tuple:
+    """
+    choix: [(0, 1) ...]
+    ant : dict
+    choisi quel case prendre en fonction des phéromones
+    """
     res = []
     for el in choix :
         #print(el, read_world(ant, el))
@@ -25,6 +31,6 @@ def choose(espace, choix, ant):
         weights=res,
         k=1
     )
-    return el
+    return el[0]
 
-print(choose(espace, choix, ant1))
+#print(choose(choix, ant1))
