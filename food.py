@@ -8,7 +8,7 @@ ant1 = { # exemple
     "angle" : (0,1),
     "have_food" : False
 }
-#possi = get_cellule(espace, ant1)
+possi = get_cellule(espace, ant1)
 
 #print(possi) #test
 def food(possibility, ant) -> tuple | bool:
@@ -19,6 +19,7 @@ def food(possibility, ant) -> tuple | bool:
     for choix in possibility :
         #print(read_world(ant, choix))
         if read_world(ant, choix) == "f":
+            ant["angle"] = (-(ant["angle"][0]), -(ant["angle"][1])) #si sur food, prend direction inverse
             print("Food Food Food")
             ant["have_food"] = True
             return choix
@@ -28,3 +29,5 @@ def food(possibility, ant) -> tuple | bool:
 
 
 #print(food(possi, ant1)) #test$
+food(possi, ant1)
+print(ant1["angle"])
