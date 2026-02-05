@@ -1,4 +1,4 @@
-import random
+import random 
 from cellule import get_cellule
 from world import espace
 from read_world import read_world
@@ -38,6 +38,6 @@ def choose( choix : list, ant: dict) -> tuple:
         weights=res,
         k=1
     )
-    return el[0]
+    return el[0] # tupple
 
-print(choose(choix, ant1))
+#print(choose(choix, ant1))

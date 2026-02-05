@@ -22,6 +22,7 @@ def food(possibility, ant) -> tuple | bool:
             ant["angle"] = (-(ant["angle"][0]), -(ant["angle"][1])) #si sur food, prend direction inverse
             print("Food Food Food")
             ant["have_food"] = True
+            
             return choix
         else:
             return False
@@ -29,5 +30,5 @@ def food(possibility, ant) -> tuple | bool:
 
 
 #print(food(possi, ant1)) #test$
-food(possi, ant1)
-print(ant1["angle"])
+#food(possi, ant1)
+#print(ant1["angle"])

@@ -1,7 +1,7 @@
 import random
 from cellule import get_cellule
 
-nb_ant = 2  #int(input("nb de fourmi : "))
+nb_ant = 1  #int(input("nb de fourmi : "))
 #world_selection = input("selection monde \n1 - monde aléatoire\n2 - monde prédéfini")
 
 

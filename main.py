@@ -3,9 +3,10 @@ from cellule import get_cellule
 from world import espace, LARGEUR, HAUTEUR
 from draw import draw
 import read_world
+from chose2_0 import think
 
 from parametre import ant_array
-print(ant_array )
+print(ant_array)
 from chose_cellule import choose
 from food import food
 
@@ -14,13 +15,12 @@ from food import food
 def move(choix:tuple, ant:dict):
     print("choix : ", choix)
     print(ant)
-    print("ant[pos] : ", ant["pos"])
+    #print("ant[pos] : ", ant["pos"])
     pheromones(espace, ant)
     #espace[ant["pos"][0]][ant1[1]] = 0
     #espace[ant1["pos"][0]][ant1["pos"][1]] += 1
-    ant["pos"][0] += choix[0]
-    ant["pos"][1] += choix[1]
-
+    ant["pos"][0] += choix[0] 
+    ant["pos"][1] += choix[0]
 
 def pheromones(espace, ant:dict):
     """pose phéromones a la position de la fourmi avant son déplacement
@@ -28,23 +28,27 @@ def pheromones(espace, ant:dict):
     if ant["have_food"]:
         espace[ant["pos"][0]][ant["pos"][1]] += 1 
 
-
 print("LANCEMENT =========================================================================== ")
 while True:
     input()
     for ant in ant_array:
         print("--------------------------------------------------------------------")
         choix = get_cellule(espace,ant) # choix "légal"
-        if food(choix, ant) != False and ant["have_food"] == False:
-            print("ant have food")
-            move(food(choix, ant), ant)#allez a nour
-        else:
-            print("ant pas de food")
-            dir = choose(choix, ant)
-            print(dir)
-            move(dir, ant)
-    print("----------------")
+        print("tout les choix", choix)
+        brain_fourmi = think(choix, ant)
+        print("brain : ", brain_fourmi)#devrait sortir que 1 ELEMENT
+        move(brain_fourmi, ant)
+        #
+        #if food(choix, ant) != False and ant["have_food"] == False:
+        #    print("ant have food")
+        #    move(food(choix, ant), ant)#allez a nour
+        #else:
+        #    print("ant pas de food")
+        #    dir = choose(choix, ant)
+        #    print(dir)
+        #    move(dir, ant)
     draw(espace)
+    print("----------------")
         #move(choix, ant)
         #espace[ant["pos"][0]][ant["pos"][1]] = "F"
         #draw(espace)
