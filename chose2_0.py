@@ -45,5 +45,4 @@ def think(choix: list, ant: dict) -> tuple:
             return best_cellule[0] # tupple
         
             
-# surement parce que pourtant dans les parametres j'ai mis que tu pouvais faire les terminals
-#print(think(choix_fourmi, ant_test)) main.py now ben tu peux le faire mtn
+#print(think(choix_fourmi, ant_test)) 
