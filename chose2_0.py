@@ -5,7 +5,7 @@ from read_world import read_world
 import random
 
 ant_test = {
-      "pos" : (1,0),
+      "pos" : (0,0),
       "angle" : (0,1),
       "have_food" : False
 }
@@ -21,28 +21,35 @@ def think(choix: list, ant: dict) -> tuple:
     food_path = []
     pheromone_rate = []
     choixXF = []
-
+    #print("choix : " , choix)
     for el in choix : 
         if read_world(ant, el) == "f" : 
             if ant["have_food"] == False: 
                 food_path.append(el) 
                 ant["angle"] = (-(ant["angle"][0]), -(ant["angle"][1])) #si sur food, prend direction inverse
-                print("Food Food Food")
+                #print("Food Food Food")
                 ant["have_food"] = True 
 
             return random.choice(food_path) # tupple
         
-        else : 
-            if read_world(ant, el) != "f" :
-                choixXF.append(el)
-                     
+        elif read_world(ant, el) != "f" : 
+            choixXF.append(el)
+            #print("el-ajouté")
             pheromone_rate.append(read_world(ant, el) / len(choixXF))
-            best_cellule = random.choices(  
-                population = choixXF,
-                weights = pheromone_rate,
-                k=1#longeur de la liste a return 
-                )
-            return best_cellule[0] # tupple
+            #print("-----")
+            #print(f'choixXf : {choixXF}')
+            #print(f'phero : {pheromone_rate}')
+            #print(best_cellule)
+
+
+    best_cellule = random.choices(  
+        population = choixXF,
+        weights = pheromone_rate,
+        k=1#longeur de la liste a return 
+    )
+
+    return best_cellule[0] # best_cellule est une liste a un tupple, pour rvoyer jsute le tupple -> [0]
+        
         
             
 #print(think(choix_fourmi, ant_test)) 
