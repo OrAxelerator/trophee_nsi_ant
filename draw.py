@@ -1,5 +1,4 @@
 from world import espace
-from parametre import ant_array
 
 #ant_array = [ { 
 #    "pos" : [2, 3],
@@ -14,7 +13,10 @@ from parametre import ant_array
 #    "have_food" : False
 #}
 #]
-def draw(list):
+
+
+
+def draw(list, ant_array):
     for i in range(len(list)):
         for j in range(len(list[0])):
             fourmi = False
