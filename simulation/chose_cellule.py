@@ -1,7 +1,7 @@
 import random 
 from cellule import get_cellule
 from world import espace
-from read_world import read_world
+from simulation.read_world import read_world
 ant1 = { # exemple
     "pos" : (0, 0),
     "angle" : (0,1),

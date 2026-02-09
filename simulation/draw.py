@@ -1,4 +1,4 @@
-from world import espace
+#from world import espace
 
 #ant_array = [ { 
 #    "pos" : [2, 3],
@@ -14,8 +14,6 @@ from world import espace
 #}
 #]
 
-
-
 def draw(list, ant_array):
     for i in range(len(list)):
         for j in range(len(list[0])):
@@ -23,10 +21,18 @@ def draw(list, ant_array):
             for ant in (ant_array):
                     if ant["pos"][0] == i and ant["pos"][1] == j:
                        fourmi = True
+            charctere = list[i][j]
+            if list[i][j] == "f":
+                charctere = "🌱"
+            elif list[i][j] == "X":
+                charctere = "🪨"
+            elif list[i][j] == "h":
+                charctere = "🏠"
+
             if j == len(list) -1:
-                print("🐜" if fourmi else list[i][j], " ")
+                print("🐜" if fourmi else charctere, " ")
             else:
-                print(f"{"🐜" if fourmi else list[i][j]}\t",end = " ")
+                print(f"{"🐜" if fourmi else charctere}\t",end = " ")
                       
                 
 #draw(espace)

@@ -2,9 +2,9 @@ import random
 from cellule import get_cellule
 from world import espace, LARGEUR, HAUTEUR
 from draw import draw
-import read_world
+import simulation.read_world as read_world
 from chose2_0 import think
-from unlock import unblock
+from simulation.unlock import unblock
 
 from parametre import ant_array
 from chose_cellule import choose

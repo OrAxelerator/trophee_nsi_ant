@@ -1,6 +1,6 @@
 from cellule import get_cellule
 from world import espace
-from read_world import read_world
+from simulation.read_world import read_world
 #from parametre import ant_array
 import random
 

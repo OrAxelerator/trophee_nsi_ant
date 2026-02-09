@@ -1,5 +1,5 @@
 from world import espace
-from read_world import read_world
+from simulation.read_world import read_world
 
 
 ant = { # exemple
