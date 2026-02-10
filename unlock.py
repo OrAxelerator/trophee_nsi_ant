@@ -52,7 +52,7 @@ def unblock(espace, ant):
         #ant["angle"] = el
         #Choix = get_cellule(espace, ant)
         #phero.append((ant["pos"], (el))
-        val = read_world(ant, el)
+        val = read_world(ant, el, espace)
         if val == "X":
             pass
         else:

@@ -46,8 +46,8 @@ while True:
             ant["angle"] = unblock(espace, ant)
             choix = get_cellule(espace,ant)
 
-        print("tout les choix", choix)
-        brain_fourmi = think(choix, ant)
+        #print("tout les choix", choix)
+        brain_fourmi = think(choix, ant, espace)
         print("brain : ", brain_fourmi)#devrait sortir que 1 ELEMENT
         move(brain_fourmi, ant)
         #

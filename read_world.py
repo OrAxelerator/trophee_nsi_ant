@@ -1,6 +1,6 @@
 from world import espace
 
-def read_world(ant:dict, direction:tuple | dict):
+def read_world(ant:dict, direction:tuple, espace:list | dict):
     """
     calcule la position de ant + direction
     in : tuple or array

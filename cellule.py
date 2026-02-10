@@ -50,7 +50,7 @@ def get_cellule(world, ant: dict) -> list:
     for el in choices:
         if choices[el] not in interdiction:
             if (choices[el][coef] == ant["angle"][coef]):
-                if read_world(ant, choices[el]) != "X" :
+                if read_world(ant, choices[el], world) != "X" :
                     possibility.append(choices[el])
 
     return possibility
