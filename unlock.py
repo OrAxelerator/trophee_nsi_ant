@@ -16,31 +16,31 @@ def unblock(espace, ant):
     #possie = []
     angleOpposed = (-(ant["angle"][0]), -(ant["angle"][1]))
     angle_before = ant["angle"]
-    print("angle op", angleOpposed)
+    #print("angle op", angleOpposed)
     for el in ang : 
         #print("angle for :", (el, 0))
         ant["angle"] = (el, 0)
-        print("angle1",(el, 0))
-        print("get-cel : ", get_cellule(espace, ant))
+        #print("angle1",(el, 0))
+        #print("get-cel : ", get_cellule(espace, ant))
         if get_cellule(espace, ant) != [] and ant["angle"] != angleOpposed :
             for i in range(len(get_cellule(espace, ant))) :
                 if abs(get_cellule(espace, ant)[i][0]) != abs(get_cellule(espace, ant)[i][1]) :
-                    print("get-cel : ", get_cellule(espace, ant))
+                    #print("get-cel : ", get_cellule(espace, ant))
                     res.append((el, 0))
-                    print("passage")
+                    #print("passage")
 
     for el in ang :
         #print("angle for :", (0,el))
         ant["angle"] = (0, el)
-        print("angle2",(0, el))
+        #print("angle2",(0, el))
         
         if get_cellule(espace, ant) != [] and ant["angle"] != angleOpposed :
             for i in range(len(get_cellule(espace, ant))) :
                 if abs(get_cellule(espace, ant)[i][0]) != abs(get_cellule(espace, ant)[i][1]) :
-                    print("get-cel : ", get_cellule(espace, ant))
+                    #print("get-cel : ", get_cellule(espace, ant))
                     res.append((0, el))
-                    print("res", res)
-                    print("passage")
+                    #print("res", res)
+                    #print("passage")
     
     if res == []:
         print("demi-tour")
@@ -58,7 +58,7 @@ def unblock(espace, ant):
         else:
             phero.append(val)
 
-    print("phero : ", phero)
+    #print("phero : ", phero)
     angle = res[phero.index(max(phero))]
     print("res de la mort, ",angle)
     return angle
