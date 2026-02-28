@@ -15,7 +15,7 @@ def unblock(espace, ant):
     res = [] # toute les angles possible sauf "demi tour"
     ang = [1,-1]
     #possie = []
-    angleOpposed = (-(ant["angle"][0]), -(ant["angle"][1]))
+    angleOpposed = (-(ant["angle"][0]), -(ant["angle"][1])) #impossible retourner en arriere
     angle_before = ant["angle"]
     #print("angle op", angleOpposed)
     for el in ang : 
@@ -23,9 +23,9 @@ def unblock(espace, ant):
         ant["angle"] = (el, 0)
         #print("angle1",(el, 0))
         #print("get-cel : ", get_cellule(espace, ant))
-        if get_cellule(espace, ant) != [] and ant["angle"] != angleOpposed :
-            for i in range(len(get_cellule(espace, ant))) :
-                if abs(get_cellule(espace, ant)[i][0]) != abs(get_cellule(espace, ant)[i][1]) :
+        if get_cellule(espace, ant,"filtered") != [] and ant["angle"] != angleOpposed :
+            for i in range(len(get_cellule(espace, ant,"filtered"))) :
+                if abs(get_cellule(espace, ant,"filtered")[i][0]) != abs(get_cellule(espace, ant, "filtered")[i][1]) : # verifies qu'il ne soit pas sous forme 1,1
                     #print("get-cel : ", get_cellule(espace, ant))
                     res.append((el, 0))
                     #print("passage")
@@ -35,9 +35,9 @@ def unblock(espace, ant):
         ant["angle"] = (0, el)
         #print("angle2",(0, el))
         
-        if get_cellule(espace, ant) != [] and ant["angle"] != angleOpposed :
-            for i in range(len(get_cellule(espace, ant))) :
-                if abs(get_cellule(espace, ant)[i][0]) != abs(get_cellule(espace, ant)[i][1]) :
+        if get_cellule(espace, ant, "filtered") != [] and ant["angle"] != angleOpposed :
+            for i in range(len(get_cellule(espace, ant, "filtered"))) :
+                if abs(get_cellule(espace, ant, "filtered")[i][0]) != abs(get_cellule(espace, ant, "filtered")[i][1]) :
                     #print("get-cel : ", get_cellule(espace, ant))
                     res.append((0, el))
                     #print("res", res)
@@ -106,4 +106,4 @@ def unblock(espace, ant):
     # return good_one
 
     
-print(unblock(espace, ant1))
+# print(unblock(espace, ant1))

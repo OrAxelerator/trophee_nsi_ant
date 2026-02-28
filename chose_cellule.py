@@ -7,7 +7,7 @@ ant1 = { # exemple
     "angle" : (0,1),
     "have_food" : False
 }
-choix = get_cellule(espace, ant1)
+choix = get_cellule(espace, ant1, "filtered")
 
 #print(read_world(ant1, (0,0)))
 print("choix : ", choix)

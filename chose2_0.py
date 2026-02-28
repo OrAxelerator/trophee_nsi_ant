@@ -6,14 +6,13 @@ from cellule import get_cellule
 from read_world import read_world
 
 ant_test = {
-      "pos" : [4,2],
-      "angle" : (1,0),
+      "pos" : [0,0],
+      "angle" : (0,1),
       "have_food" : False
 }
-choix_fourmi = get_cellule(espace, ant_test)
+choix_fourmi = get_cellule(espace, ant_test, "filtered")
 
 def think(choix: list, ant: dict, espace:list) -> tuple: 
-
     """
     renvoi le chemin le 'plus optimisé' selon les phéromones
     si la fourmi n'as pas accés a de la nourriture.
@@ -28,24 +27,35 @@ def think(choix: list, ant: dict, espace:list) -> tuple:
     #print("choix : " , choix)
     print("choaaaaaaaa : " , choix)
     print("ANGLE", ant["angle"])
+    choixXH = []
     for el in choix :
         print("ELLL", el)
         print("READ", read_world(ant, el, espace))
-        TousRead_world[read_world(ant, el, espace)] = 0
+        case = read_world(ant, el, espace)
+        if str(case) in TousRead_world.keys():
+            TousRead_world[str(case)] += 1
+        else:
+            TousRead_world[str(case)] = 0
+        
+        if case != "h" :
+            choixXH.append(el)
     print("TousreadWorld 2", TousRead_world)
     
-    for el in choix :
-            TousRead_world[read_world(ant, el, espace)] += 1 #compte le nombre de f il y a (si il y en a)
-            print("choix choix el ", TousRead_world)
+    # for el in choix :
+    #         TousRead_world[read_world(ant, el, espace)] += 1 #compte le nombre de f il y a (si il y en a)
+    #         print("choix choix el ", TousRead_world)
 
     print("read_world :",TousRead_world)
         
     if "f" not in TousRead_world : #si il n'y a pas de f autour de la fourmi
-        for el in choix : 
+        for el in choixXH : 
+            #if read_world(ant, el, espace) not in  "h" :
+                
             #choixXF.append(el) #recupere les choix de la fourmi sans f
             #print("choixXF : ",choixXF)
             #print("el-ajouté")
-            pheromone_rate.append(read_world(ant, el, espace) / len(choix)) #fais le poids de chaque possiblité
+            
+                pheromone_rate.append(read_world(ant, el, espace) / len(choixXH)) #fais le poids de chaque possiblité
             
             #print("-----")
             #print(f'choixXf : {choixXF}')
@@ -54,7 +64,7 @@ def think(choix: list, ant: dict, espace:list) -> tuple:
 
 
         best_cellule = random.choices(  
-            population = choix, #choixXF
+            population = choixXH, #choixXF
             weights = pheromone_rate,
             k=1#longeur de la liste a return 
         )
@@ -66,9 +76,9 @@ def think(choix: list, ant: dict, espace:list) -> tuple:
         
     elif "f" in TousRead_world : # si il y a un f autour de la fourmi
         if ant["have_food"] == False: # si elle a deja de la nourriture 
-            for el in choix :
+            for el in choixXH :
                 #print("read_world",read_world(ant, el))
-                if read_world(ant,el, espace) == "f" :
+                if read_world(ant,el, espace) == "f":
                     food_path.append(el) # récupere les emplacements de f
             #ant["angle"] = (-(ant["angle"][0]), -(ant["angle"][1])) #si sur food, prend direction inverse
             #print("Food Food Food")
@@ -78,21 +88,21 @@ def think(choix: list, ant: dict, espace:list) -> tuple:
 
         elif ant["have_food"] == True : #si elle avait deja de la nourriture
                 #print("TTchoix:",TtChoix)
-            for el in choix :
-                if read_world(ant, el, espace) != "f" :
-                    pheromone_rate1.append(read_world(ant, el, espace) / len(choix)) #calcule le poids des cases
+            for el in choixXH :
+                if read_world(ant, el, espace) != "f": #foo d/home
+                    pheromone_rate1.append(read_world(ant, el, espace) / len(choixXH)) #calcule le poids des cases
                     print("DONE")
                 #print("pheromone_rate1", pheromone_rate1)
             
             
             for k in range(TousRead_world["f"]) :
-                pheromone_rate1.append(1 / len(choix))  # ajoute un poids avec pour 1 feromone pour chaque f 
+                pheromone_rate1.append(1 / len(choixXH))  # ajoute un poids avec pour 1 feromone pour chaque f 
                 
             
             print("pherromone",pheromone_rate1)
-            print("CHOIX", choix)
+            print("CHOIX", choixXH)
             best_cellule1 = random.choices(  
-                population = choix,
+                population = choixXH,
                 weights = pheromone_rate1,
                 k=1
             )
@@ -102,5 +112,4 @@ def think(choix: list, ant: dict, espace:list) -> tuple:
             return best_cellule1[0]
         
         
-            
-print("think :",think(choix_fourmi, ant_test, espace)) 
+# print("think :",think(choix_fourmi, ant_test, espace)) 

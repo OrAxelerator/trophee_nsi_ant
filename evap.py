@@ -22,5 +22,5 @@ def evaporation(world, taux):
 
     #time.sleep(0.1)
 
-evaporation(espace, 0.05)   # 5% d'évaporation par tick
-draw(espace, [])
+#evaporation(espace, 0.05)   # 5% d'évaporation par tick
+#draw(espace, [])
